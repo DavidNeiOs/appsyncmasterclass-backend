@@ -9,9 +9,9 @@ type Query {
   getMyProfile: MyProfile!
   getProfile(screenName: String!): OtherProfile
   getTweets(userId: ID!, limit: Int!, nextToken: String!): TweetsPage!
-  getLikes( userId: ID!, limit: Int!, nextToken: String!): TweetsPage!
+  getLikes(userId: ID!, limit: Int!, nextToken: String!): TweetsPage!
   getFollowers(userId: ID!, limit: Int!, nextToken: String!): ProfilesPage!
-  getFollowing(userId: ID!, limit: Int!, nextToken: String!): : ProfilesPage!
+  getFollowing(userId: ID!, limit: Int!, nextToken: String!): ProfilesPage!
 }
 
 type Mutation {
@@ -34,7 +34,6 @@ input ProfileInput {
   location: String
   website: AWSURL
   birthdate: AWSDate
-
 }
 
 interface IProfile {
@@ -63,6 +62,7 @@ type MyProfile implements IProfile {
   backgroundImageUrl: AWSURL
   bio: String
   location: String
+  website: AWSURL
   birthdate: AWSDate
   createdAt: AWSDateTime!
   tweets: TweetsPage!
@@ -80,6 +80,7 @@ type OtherProfile implements IProfile {
   backgroundImageUrl: AWSURL
   bio: String
   location: String
+  website: AWSURL
   birthdate: AWSDate
   createdAt: AWSDateTime!
   tweets: TweetsPage!

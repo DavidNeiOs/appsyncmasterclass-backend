@@ -4,15 +4,22 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "sls": "sls"
+    "sls": "sls",
+    "deploy": "sls deploy",
+    "export-env": "sls export-env",
+    "integration-test": "jest --verbose ./__tests__/test_cases/integration"
   },
   "repository": "git@github.com:DavidNeiOs/appsyncmasterclass-backend.git",
   "author": "DavidNeiOs <davidneios25@gmail.com>",
   "license": "MIT",
   "devDependencies": {
+    "@types/jest": "^26.0.23",
     "aws-sdk": "^2.886.0",
+    "dotenv": "^10.0.0",
+    "jest": "^27.0.5",
     "serverless": "2.4.0",
     "serverless-appsync-plugin": "^1.9.0",
+    "serverless-export-env": "1.4.0",
     "serverless-iam-roles-per-function": "^3.1.0"
   },
   "dependencies": {

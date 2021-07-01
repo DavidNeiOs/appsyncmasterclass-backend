@@ -7,6 +7,7 @@
     "sls": "sls",
     "deploy": "sls deploy",
     "export-env": "sls export-env",
+    "unit-test": "jest --verbose ./__tests__/test_cases/unit",
     "integration-test": "jest --verbose ./__tests__/test_cases/integration",
     "e2e-test": "jest --verbose ./__tests__/test_cases/e2e"
   },
@@ -15,9 +16,13 @@
   "license": "MIT",
   "devDependencies": {
     "@types/jest": "^26.0.23",
+    "amplify-appsync-simulator": "^1.27.1",
+    "amplify-velocity-template": "^1.4.5",
     "aws-sdk": "^2.886.0",
+    "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "jest": "^27.0.5",
+    "lodash": "^4.17.21",
     "serverless": "2.4.0",
     "serverless-appsync-plugin": "^1.9.0",
     "serverless-export-env": "1.4.0",

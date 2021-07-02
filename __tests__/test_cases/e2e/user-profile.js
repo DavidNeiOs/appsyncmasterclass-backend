@@ -1,6 +1,9 @@
+require("dotenv").config();
 const given = require("../../steps/given");
 const when = require("../../steps/when");
+const then = require("../../steps/then");
 const chance = require("chance").Chance();
+const path = require("path");
 
 describe("given an authenticated user", () => {
   let user, profile;
@@ -33,6 +36,28 @@ describe("given an authenticated user", () => {
     const [firstName, lastName] = user.name.split(" ");
     expect(profile.screenName).toContain(firstName);
     expect(profile.screenName).toContain(lastName);
+  });
+
+  it("the user can get an url to upload a new profile image", async () => {
+    const uploadUrl = await when.a_user_calls_getImageUploadUrl(
+      user,
+      ".png",
+      "image/png"
+    );
+
+    const bucketName = process.env.BUCKET_NAME;
+    const regex = new RegExp(
+      `https://${bucketName}.s3-accelerate.amazonaws.com/${user.username}/.*.png\?.*Content-Type=image%2Fpng.*`
+    );
+
+    expect(uploadUrl).toMatch(regex);
+
+    const filePath = path.join(__dirname, "../../data/test.png");
+
+    await then.user_can_upload_image_to_url(uploadUrl, filePath, "image/png");
+
+    const downloadUrl = uploadUrl.split("?")[0];
+    await then.user_can_download_image_from(downloadUrl);
   });
 
   it("the user can edit his profile with editMyProfile", async () => {
